@@ -107,10 +107,30 @@
 .shiftToRight{
     transform: translate(100%);
 }
+.logo{
+    font: 200 1.9vmax Roboto;
+    text-align: center;
+    margin-top: 1vmax;
+}
 
-
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
+    .logo{
+        font: 200 2.4vmax Roboto;
+        text-align: center;
+        margin-top: 1vmax;
+        
+    }
     #LoginSignUpBoxx{
-        width: 40vw;
+        height: 50vh;
+        width: 60vw;
+    }
+    .loginForm>div>input{
+        font: 200 2.4vmax Roboto;
+    }
+    .loginForm>input{
+        font: 200 2.4vmax Roboto;
+    }
+    .loginForm>a{
+        font: 200 2.4vmax Roboto;
     }
 }

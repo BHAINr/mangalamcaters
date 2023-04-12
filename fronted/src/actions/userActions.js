@@ -51,12 +51,12 @@ export const login = (email, password) => async (dispatch) => {
 };
 
 //register
-export const register = (registerName, registerEmail, registerPassword) => async (dispatch) => {
+export const register = (name, email, password) => async (dispatch) => {
     try {
         dispatch({ type: REGISTER_REQUEST });
 
         const config = { headers: { "Content-Type": "multipart/form-data" } };
-        const { data } = await axios.post(`/api/v1/register`, { registerName, registerEmail, registerPassword }, config);
+        const { data } = await axios.post(`/api/v1/register`, { name, email, password }, config);
 
         dispatch({ type: REGISTER_SUCESS, payload: data.user });
     } catch (error) {

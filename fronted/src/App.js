@@ -4,6 +4,7 @@ import webfont, { load } from "webfontloader";
 import Header from './Component/Header';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 //import Navbar from './Component/Navbar';
+import About from './Component/User/About';
 import ProductDetails from "./Component/Product/ProductDetails"
 import Search from './Component/Search/Search';
 import Footer2 from './Component/Footer2';
@@ -83,7 +84,7 @@ function App() {
         <Route path="/shipping" element={<Shipping />} />
         <Route path="/order/confirm" element={<ConfirmOrder />} />
         <Route path="/orders" element={<Myorders />} />
-   
+        <Route path='/About' element={<About />} />
         <Route exact path="/regester" element={<Regester />} />
 
         <Route path="/process/payment" element={<Payment />} />

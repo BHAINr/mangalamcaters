@@ -1,121 +1,70 @@
-import React, { Fragment, useRef, useState, useEffect } from 'react'
+import React, { Fragment, useState } from 'react'
 import "./LoginSignup.css";
-import Loader from '../Loader/Loader';
-import { Link, redirect } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { clearErrors, register } from '../../actions/userActions';
-import { createBrowserHistory } from 'history';
+//import Loader from '../Loader/Loader';
+import { Link } from 'react-router-dom';
+//import { useDispatch, useSelector } from 'react-redux';
+//mport { clearErrors, register } from '../../actions/userActions';
+//import { createBrowserHistory } from 'history';
 //import { Location } from 'history';
+import "./Regester.css";
 
-const Regester = () => {
+function Regester() {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        password: ''
 
-    const dispatch = useDispatch();
-    const history = createBrowserHistory();
+    });
 
-    const { loading, isAuthenticated } = useSelector((state) => state.users);
-
-
-
-    const [registerEmail, setRegisterEmail] = useState("");
-    const [registerName, setRegisterName] = useState("");
-    const [registerPassword, setRegisterPassword] = useState("");
-
-
-
-    /*
-        const [user, setUser] = useState({
-            name: "",
-            email: "",
-            password: ""
-        });
-    */
-    /*
-        const regesterDataChange = (e) => {
-            e.preventDefault();
-            setUser({ ...user, [e.target.name]: e.target.value });
-        }
-    */
-    //  const { name, email, password } = user;
-    const registerSubmit = (e) => {
-        e.preventDefault();
-        //userData  -----userAction.js
-        //const myForm = new FormData();
-        //myForm.set("name", name);
-        //myForm.set("email", email);
-        //myForm.set("password", password);
-
-
-        dispatch(register(registerName, registerEmail,  registerPassword));
-        console.log("signUp Form Submited")
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setFormData({ ...formData, [name]: value });
     }
 
-
-    // const redirect = Location.search ? Location.search.split(" ")[1] : "/account";
-    useEffect(() => {
-        // window.location.reload();
-        if (isAuthenticated) {
-            history.push("/");
-        }
-        // history.push("/");
-
-    }, [dispatch, history, isAuthenticated, redirect]);
-
+    const handleFormSubmit = () => {
+        fetch('/api/v1/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data); // handle success response
+            })
+            .catch(error => console.error(error)); // handle error response
+    }
 
     return (
         <Fragment>
-            {
-                loading ? <Loader /> :
-                    <Fragment>
-                        <div className="LoginSignUpContainer">
-                            <div className="LoginSignUpBoxx" id="LoginSignUpBoxx">
+            <div className='container'>
+                <div className="fome1 row">
+                    <div className=" fome col-md">
+                        <div className="box">
+                            <h1>Regester</h1>
+                            <form className="loginfome">
+                                <div className="loginName">
+                                    <input type="text" name="name" value={formData.name} placeholder="Name" onChange={handleInputChange} />
+                                </div>
 
-                                <form className="loginForm"  onSubmit={registerSubmit}>
-                                    <div className="loginEmail">
+                                <div className="loginEmail">
+                                    <input type="email" name="email" value={formData.email} placeholder="Email" onChange={handleInputChange} />
+                                </div>
 
-                                        <input
-                                            type="name"
-                                            placeholder="Name   "
-                                            required
-                                            value={registerName}
-                                            onChange={(e) => setRegisterName(e.target.value)}
+                                <div className="loginPassword">
+                                    <input type="password" name="password" value={formData.password} placeholder="Password" onChange={handleInputChange} />
 
-                                        />
+                                </div>
 
-                                    </div>
-                                    <div className="loginEmail">
-
-                                        <input
-                                            type="email"
-                                            placeholder="Email"
-                                            required
-                                            value={registerEmail}
-                                            onChange={(e) => setRegisterEmail(e.target.value)}
-
-                                        />
-
-                                    </div>
-                                    <div className="loginPassword">
-                                        <input
-                                            type="password"
-                                            placeholder="Password"
-                                            required
-                                            value={registerPassword}
-                                            onChange={(e) => setRegisterPassword(e.target.value)}
-                                        />
-                                    </div>
-
-                                    <input type="submit" value="Login" className="loginBtn" />
-                                </form>
-
-
-
-
-                            </div>
+                                <Link to="/"><button type="button" onClick={handleFormSubmit}>Submit</button></Link>
+                            </form>
                         </div>
-                    </Fragment>
-            }
+                    </div>
+                </div>
+            </div>
         </Fragment>
-    )
+    );
 }
 
-export default Regester
+export default Regester;

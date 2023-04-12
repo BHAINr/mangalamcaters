@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
-import { useSelector } from "react-redux";
+//import { useSelector } from "react-redux";
+import "./Product.css";
+
 
 const options = {
 
@@ -19,8 +21,9 @@ const Product = ({ product }) => {
   
     return (
         <Link className="productCard" to={`/products/${product._id}`}>
-            <img src={product.image[0].
-                public_url} />
+            <div><img src={product.image[0].
+                public_url} alt="My Image"/></div>
+            
             <p>{product.name}</p>
             <p>{product.category}</p>
             <span>{`₹${product.price}`}</span><br></br>

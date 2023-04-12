@@ -1,8 +1,9 @@
 .home {
     text-align: center;
     height: 50%;
-    margin-top: 5vmax;
+    margin-top: 7vmax;
     cursor: pointer;
+
 }
 
 .home :hover {
@@ -35,6 +36,7 @@
     width: 80vw;
     flex-wrap: wrap;
     justify-content: center;
+    font: 200 3vmax Roboto;
 }
 
 .productCard {
@@ -97,4 +99,17 @@
 }
 .sticky-left>p>a>img{
     cursor: pointer;
+}
+@media screen and(max-width:800px) {
+    .home>h3{
+        margin-top: 20vmax;
+    }
+    .containe{
+        font: 200 3.5vmax Roboto;
+    }
+    .sticky-left>p>a>img{
+        width: 3vw;
+        height: 2vh;
+        cursor: pointer;
+    }
 }

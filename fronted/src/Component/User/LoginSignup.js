@@ -79,7 +79,7 @@ const LoginSignup = () => {
     useEffect(() => {
        // window.location.reload();
         if (isAuthenticated) {
-           // history.push("/");
+           history.push("/");
         }
        // history.push("/");
         
@@ -93,13 +93,7 @@ const LoginSignup = () => {
                     <Fragment>
                         <div className="LoginSignUpContainer">
                             <div className="LoginSignUpBoxx" id="LoginSignUpBoxx">
-                                <div className="">
-                                    <div className="LoginSignUpToggle">
-                                        <p onClick={(e) => switchTabs(e, "login")}>LOGIN</p>
-                                        <p onClick={(e) => switchTabs(e, "Register")}>REGISTER</p>
-                                    </div>
-                                    <button ref={switcherTab}></button>
-                                </div>
+                                <h1 className="logo">Login</h1>
                                 <form className="loginForm" ref={loginTab} onSubmit={loginSubmit}>
                                     <div className="loginEmail">
 
@@ -110,7 +104,7 @@ const LoginSignup = () => {
                                             value={loginEmail}
                                             onChange={(e) => setLoginEmail(e.target.value)}
                                         />
-
+                                        
                                     </div>
                                     <div className="loginPassword">
                                         <input
@@ -124,52 +118,8 @@ const LoginSignup = () => {
                                     <Link to="/password/forget">Forget Password</Link>
                                     <input type="submit" value="Login" className="loginBtn" />
                                 </form>
-
-                                <form className="signUpForm" ref={registerTab}
-                                    encType="multipart/form-data"
-                                    onSubmit={registerSubmit}>
-
-
-                                    <div className="signUpName">
-                                        <input
-                                            type="name"
-                                            placeholder="Name"
-                                            required
-                                            name="name"
-                                            value={registerName}
-                                            onChange={(e) => setRegisterName(e.target.value)}
-                                        />
-                                    </div>
-
-                                    <div className="signUpEmail">
-                                        <input
-                                            type="email"
-                                            placeholder="Email"
-                                            required
-                                            name="email"
-                                            value={registerEmail}
-                                            onChange={(e) => setRegisterEmail(e.target.value)}
-                                        />
-                                    </div>
-
-                                    <div className="signUpPassword">
-                                        <input
-                                            type="password"
-                                            placeholder="Password"
-                                            required
-                                            name="password"
-                                            value={registerPassword}
-                                            onChange={(e) => setRegisterPassword(e.target.value)}
-                                        />
-                                    </div>
-
-                                        <Link to="/account"><input
-                                            type="submit"
-                                            value="Register"
-                                            className="signUpBtn"
-                                        // disabled={loading?true:false}
-                                        /></Link>
-                                </form>
+  
+                                
                             </div>
                         </div>
                     </Fragment>
